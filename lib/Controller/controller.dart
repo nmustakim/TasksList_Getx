@@ -7,13 +7,16 @@ class Controller extends GetxController{
 var todos = <ToDo> [].obs;
 
 
-
-void addToDo (String title,String desc){
- todos.add(ToDo(title: title,desc: desc));
+void addToDo (String title,String desc,DateTime dateTime){
+ todos.add(ToDo(title: title,desc: desc,creationDate:dateTime ));
 
   }
-void deleteToDo(ToDo td){
-    todos.remove(td);
+void deleteToDo(index){
+    todos.removeAt(index);
 }
+void updateToDo(int index,String title,String desc) {
+  todos[index] = ToDo(title: todos[index].title, desc:todos[index].desc);
+}
+
 
 }

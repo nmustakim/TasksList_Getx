@@ -1,8 +1,8 @@
 class ToDo{
-  String? title;
-  String?desc;
-  String? date;
-  String? time;
+  String title;
+  String desc;
+  DateTime? creationDate;
+  bool isDone;
 
-  ToDo( { this.title,this.desc,this.date,this.time});
+  ToDo( { required this.title,required this.desc, this.creationDate,this.isDone = false});
 }

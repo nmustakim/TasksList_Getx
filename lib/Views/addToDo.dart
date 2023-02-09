@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import '../Controller/controller.dart';
 
 class AddToDo extends StatefulWidget {
-  const AddToDo({Key? key}) : super(key: key);
+bool? isDone;
+
+AddToDo({super.key, this.isDone});
 
   @override
   State<AddToDo> createState() => _AddToDoState();
@@ -26,7 +28,7 @@ class _AddToDoState extends State<AddToDo> {
           const SizedBox(height: 10,),
           Row(
             children: [
-              Expanded(child: SizedBox(height:55,child: ElevatedButton(style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),onPressed: (){controller.addToDo(toDoTitle.text, toDoDesc.text);Get.back();}, child: Text('Add To Do')))),
+              Expanded(child: SizedBox(height:55,child: ElevatedButton(style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),onPressed: (){controller.addToDo(toDoTitle.text, toDoDesc.text,DateTime.now(),);Get.back();}, child: const Text('Add To Do')))),
             ],
           ),],),),
       ),
