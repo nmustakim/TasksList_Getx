@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'Controller/controller.dart';
+import 'Controller/todoController.dart';
 import 'Views/home.dart';
 
 void main() {
@@ -9,15 +9,13 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  final Controller counter = Get.put(Controller());
+  final ToDoController counter = Get.put(ToDoController());
 
   @override
   Widget build(BuildContext context) {
-    return  GetMaterialApp(
-
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: Home(),
     );
   }
 }
-
