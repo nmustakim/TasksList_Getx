@@ -62,7 +62,7 @@ class _EditToDoState extends State<EditToDo> {
                                 onPressed: () {
                                   Get.back();
                                 },
-                                child: Text(
+                                child: const Text(
                                   'Cancel',
                                   style: TextStyle(fontSize: 18),
                                 )))),
@@ -80,7 +80,7 @@ class _EditToDoState extends State<EditToDo> {
                                 onPressed: () {
                                   controller.updateToDo(widget.index,
                                       toDoTitle.text, toDoDesc.text);
-                                  Get.to(const Home());
+                                  Get.to(Home());
                                 },
                                 child: const Text(
                                   'Update To Do',

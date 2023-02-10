@@ -6,13 +6,15 @@ import 'addToDo.dart';
 import 'package:intl/intl.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({super.key});
+  final controller = Get.find<ToDoController>();
+  final search = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<ToDoController>();
-    final search = TextEditingController();
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey,
         floatingActionButton: FloatingActionButton(
           onPressed: () => Get.to(() => AddToDo()),
           child: const Icon(Icons.add_circle),
@@ -22,8 +24,12 @@ class Home extends StatelessWidget {
           child: Column(
             children: [
               TextField(
+                textAlign: TextAlign.center,
                 controller: search,
+                onChanged: (v) => controller.runFilter(v),
                 decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     suffixIcon: const Icon(Icons.search),
                     hintText: 'Title',
                     border: OutlineInputBorder(
@@ -32,35 +38,35 @@ class Home extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Obx(() => Expanded(
-                    child: ListView.builder(
-                      itemCount: controller.todos.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          elevation: 2,
-                          child: ListTile(
-                            title: Text(
-                              controller.todos[index].title,
-                            ),
-                            leading: Checkbox(
-                              value: controller.todos[index].isDone,
-                              onChanged: (value) {
-                                var todo = controller.todos[index];
-                                todo.isDone = value!;
-                                controller.todos[index] = todo;
-                                print(controller.todos[index].isDone);
-                              },
-                            ),
-                            trailing: Text(DateFormat()
-                                .format(controller.todos[index].creationDate!)),
-                            onTap: () => Get.to(() => Details(index)),
-                          ),
-                        );
-                      },
-                    ),
-                  ))
+              Expanded(
+                  child: Obx(
+                () => ListView.builder(
+                  itemCount: controller.foundTodo.value.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      elevation: 2,
+                      child: ListTile(
+                        title: Text(
+                          controller.foundTodo.value[index].title,
+                        ),
+                        leading: Checkbox(
+                          value: controller.foundTodo.value[index].isDone,
+                          onChanged: (value) {
+                            var todo = controller.todos[index];
+                            todo.isDone = value!;
+                            controller.todos[index] = todo;
+                          },
+                        ),
+                        trailing: Text(DateFormat().format(
+                            controller.foundTodo.value[index].creationDate!)),
+                        onTap: () => Get.to(() => Details(index)),
+                      ),
+                    );
+                  },
+                ),
+              ))
             ],
           ),
         ),
