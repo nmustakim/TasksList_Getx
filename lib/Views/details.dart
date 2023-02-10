@@ -12,71 +12,80 @@ class Details extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ToDoController>();
     return Scaffold(
-        body: SafeArea(
-            child: Container(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Card(
-              child: Container(
-            width: 600,
-            padding: EdgeInsets.all(16),
-            child: Text(
-              controller.todos[index].title,
-              style: TextStyle(fontSize: 20),
-            ),
-          )),
-          Card(
-            child: Container(
-              height: 500,
-              width: 600,
-              padding: EdgeInsets.all(16),
-              child: Text(
-                controller.todos[index].desc,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                child: SizedBox(
-                  height: 60,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      controller.deleteToDo(index);
-                      Get.back();
-                    },
-                    child: const Icon(
-                      Icons.delete,
-                      size: 36,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 25,
-              ),
-              Expanded(
-                child: SizedBox(
-                  height: 60,
-                  child: ElevatedButton(
-                    onPressed: () => Get.to(EditToDo(index)),
-                    child: const Icon(
-                      Icons.edit,
-                      size: 36,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    )));
+        body: Column(
+          children: [
+            Container(height: 120,decoration: BoxDecoration(color:Colors.cyanAccent,borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25),)),),
+             Padding(
+               padding: const EdgeInsets.fromLTRB(16, 32, 16, 0),
+               child: Column(children: [
+
+           Card(
+                 child: Container(
+                   width: 600,
+                   padding: EdgeInsets.all(16),
+                   child: Text(
+                     controller.todos[index].title,
+                     style: TextStyle(fontSize: 20),
+                   ),
+                 )),
+           Card(
+               child: Container(
+                 height: 400,
+                 width: 600,
+                 padding: EdgeInsets.all(16),
+                 child: Text(
+                   controller.todos[index].desc,
+                   style: TextStyle(fontSize: 18),
+                 ),
+               ),
+           ),
+           SizedBox(
+               height: 25,
+           ),
+           Row(
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               children: [
+                 Expanded(
+                   child: SizedBox(
+                     height: 60,
+                     child: ElevatedButton(
+
+                       style: ElevatedButton.styleFrom(shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),backgroundColor:Colors.cyanAccent ),
+                       onPressed: () {
+                         controller.deleteToDo(index);
+                         Get.back();
+                       },
+                       child: const Icon(
+                         Icons.delete,
+                         size: 36,
+                         color: Colors.black,
+                       ),
+                     ),
+                   ),
+                 ),
+                 SizedBox(
+                   width: 50,
+                 ),
+                 Expanded(
+                   child: SizedBox(
+                     height: 60,
+                     child: ElevatedButton(
+                       style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),backgroundColor:Colors.cyanAccent, ),
+                       onPressed: () => Get.to(EditToDo(index)),
+                       child: const Icon(
+                         Icons.edit,
+                         size: 36,
+                         color: Colors.black,
+                       ),
+                     ),
+                   ),
+                 ),
+               ],
+           )
+               ],),
+             ),
+
+          ],
+        ));
   }
 }

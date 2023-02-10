@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Controller/todoController.dart';
 import 'Views/home.dart';
+import 'Views/todo_home.dart';
 
 void main() {
   runApp(MyApp());
