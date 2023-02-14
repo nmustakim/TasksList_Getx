@@ -10,11 +10,13 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  final ToDoController counter = Get.put(ToDoController());
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+       primaryColor: Colors.cyanAccent
+      ),
       debugShowCheckedModeBanner: false,
       home: Home(),
     );

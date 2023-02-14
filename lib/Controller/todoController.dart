@@ -5,11 +5,7 @@ import 'package:todo_getx/Models/todos.dart';
 
 class ToDoController extends GetxController {
   var todos = <ToDo>[
-    ToDo(
-        title: 'Demo title',
-        desc: 'Demo Description',
-        creationDate: DateTime.now(),
-        isDone: false),
+
   ].obs;
   var foundTodo = <ToDo>[].obs;
 
@@ -40,7 +36,8 @@ class ToDoController extends GetxController {
     todos.removeAt(index);
   }
 
-  void updateToDo(int index, String title, String desc) {
+ updateToDo(int index, String title, String desc) {
     todos[index] = ToDo(title: todos[index].title, desc: todos[index].desc);
+
   }
 }

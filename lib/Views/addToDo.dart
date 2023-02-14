@@ -18,76 +18,68 @@ class _AddToDoState extends State<AddToDo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(height: 125,decoration: BoxDecoration(color:Colors.cyanAccent,borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25),)),),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 32,16, 0),
-                child: Column(children: [
-                  SizedBox(
-                    height:45,
-                    child: TextField(
+    body: SafeArea(
+      child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Stack(children: [
+                  Container(height: 100,width:MediaQuery.of(context).size.width,decoration: const BoxDecoration(color:Colors.cyanAccent,borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25),)),),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(onPressed: ()=>Get.back(), icon: const Icon(Icons.close_rounded,color: Colors.red,size: 60)),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 16),
+                          child: Text('Add Todo',style: TextStyle(fontSize: 40),),
+                        ),
+        IconButton(onPressed: () {controller.addToDo(
+        toDoTitle.text,
+        toDoDesc.text,
+        DateTime.now());
+            Get.back();}, icon: const Icon(Icons.check,color: Colors.green,size: 60)),
+
+                      ],
+                    ),
+                  ),
+
+                ],),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(18, 32,18, 0),
+                  child: Column(children: [
+                    SizedBox(
+                      height:45,
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        controller: toDoTitle,
+                        decoration: InputDecoration(
+                            hintText: 'Title',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15))),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextField(
                       textAlign: TextAlign.center,
-                      controller: toDoTitle,
+                      maxLines: 20,
+                      controller: toDoDesc,
                       decoration: InputDecoration(
-                          hintText: 'Title',
+                          hintText: 'Description',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15))),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    textAlign: TextAlign.center,
-                    maxLines: 15,
-                    controller: toDoDesc,
-                    decoration: InputDecoration(
-                        hintText: 'Description',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                            height: 55,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.cyanAccent,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(15))),
-                                onPressed: () {
-                                  controller.addToDo(
-                                    toDoTitle.text,
-                                    toDoDesc.text,
-                                    DateTime.now(),
-                                  );
-                                  Get.back();
-                                },
-                                child: const Text('Add To Do',style: TextStyle(fontSize: 16,color: Colors.black),))
-                        ),
-                      ),
-                      SizedBox(width: 50,),
-                      Expanded(
-                        child: SizedBox(
-                            height: 55,
-                            child: ElevatedButton(style:ElevatedButton.styleFrom( backgroundColor: Colors.cyanAccent,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)) ),onPressed: ()=>Get.back(), child: Text('Cancel',style: TextStyle(fontSize: 16,color: Colors.black),))),
-                      )
-                    ],
-                  ),
-                ],),
-              ),
 
-            ],
+                  ],),
+                ),
+
+              ],
+            ),
           ),
-        ),
+    ),
     );
   }
 }

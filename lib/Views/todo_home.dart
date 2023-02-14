@@ -5,12 +5,18 @@ import '../Controller/todoController.dart';
 import 'addToDo.dart';
 import 'package:intl/intl.dart';
 
-class TodoHome extends StatelessWidget {
+class TodoHome extends StatefulWidget {
   String? name;
 
   TodoHome({super.key, this.name});
 
+  @override
+  State<TodoHome> createState() => _TodoHomeState();
+}
+
+class _TodoHomeState extends State<TodoHome> {
   final controller = Get.find<ToDoController>();
+
   final search = TextEditingController();
 
   @override
@@ -36,11 +42,13 @@ class TodoHome extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Hello, ${name!.toUpperCase()}',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Text('Hello,',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      CircleAvatar(backgroundColor:Colors.cyanAccent,radius:30,child: Text(name!,style: TextStyle(fontSize: 18,color: Colors.black),),)
+                      CircleAvatar(backgroundColor:Colors.cyanAccent,radius:30,child: Text('NM',style: TextStyle(fontSize: 18,color: Colors.black),),)
                     ],
                   ),
                   SizedBox(height: 40,),
@@ -76,9 +84,10 @@ class TodoHome extends StatelessWidget {
                               controller.foundTodo.value[index].title,
                             ),
                             leading: Checkbox(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                               checkColor: Colors.black,
                               fillColor: MaterialStateProperty.all(Colors.cyanAccent),
-                               focusColor: Colors.black,
+                              focusColor: Colors.black,
 
                               value: controller.foundTodo.value[index].isDone,
                               onChanged: (value) {
@@ -87,9 +96,10 @@ class TodoHome extends StatelessWidget {
                                 controller.todos[index] = todo;
                               },
                             ),
-                            trailing: Text(DateFormat().format(controller
-                                .foundTodo.value[index].creationDate!)),
-                            onTap: () => Get.to(() => Details(index)),
+                              //
+                              // trailing: Text(DateFormat().format(controller
+                              //   .foundTodo.value[index].creationDate!)),
+                            onTap: () => Get.to( Details(index)),
                           ),
                         );
                       },
