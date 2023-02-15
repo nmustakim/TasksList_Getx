@@ -6,6 +6,7 @@ import '../Controller/todoController.dart';
 class Home extends StatelessWidget {
  Home({Key? key}) : super(key: key);
 final name = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final todoController = Get.put(ToDoController());

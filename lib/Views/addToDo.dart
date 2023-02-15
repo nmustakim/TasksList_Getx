@@ -36,8 +36,7 @@ class _AddToDoState extends State<AddToDo> {
                         ),
         IconButton(onPressed: () {controller.addToDo(
         toDoTitle.text,
-        toDoDesc.text,
-        DateTime.now());
+        toDoDesc.text);
             Get.back();}, icon: const Icon(Icons.check,color: Colors.green,size: 60)),
 
                       ],

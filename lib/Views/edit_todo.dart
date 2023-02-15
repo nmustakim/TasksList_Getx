@@ -3,23 +3,21 @@ import 'package:get/get.dart';
 import 'package:todo_getx/Views/todo_home.dart';
 import '../Controller/todoController.dart';
 
-class EditToDo extends StatefulWidget {
+class EditToDo extends StatelessWidget {
   final index;
 
-  const EditToDo(this.index, {super.key});
+ EditToDo(this.index, {super.key});
 
-  @override
-  State<EditToDo> createState() => _EditToDoState();
-}
-
-class _EditToDoState extends State<EditToDo> {
   final controller = Get.find<ToDoController>();
+
   @override
   Widget build(BuildContext context) {
     final toDoTitle =
-        TextEditingController(text: controller.todos[widget.index].title);
+        TextEditingController(text: controller.todos[index].title);
+
     final toDoDesc =
-        TextEditingController(text: controller.todos[widget.index].desc);
+        TextEditingController(text: controller.todos[index].desc);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -38,8 +36,8 @@ class _EditToDoState extends State<EditToDo> {
                         child: Text('Edit Todo',style: TextStyle(fontSize: 40),),
                       ),
                       IconButton(onPressed: (){
-            controller.updateToDo(widget.index, toDoTitle.text, toDoDesc.text);
-   Get.to(()=>TodoHome());
+                        controller.updateToDo(index,toDoTitle.text, toDoDesc.text);
+   Get.to(TodoHome());
 
     }, icon: Icon(Icons.check,size: 60,color: Colors.green,))
                     ],

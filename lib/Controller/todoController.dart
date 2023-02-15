@@ -15,6 +15,7 @@ class ToDoController extends GetxController {
     super.onInit();
   }
 
+
   void runFilter(String enteredString) {
     var result = <ToDo>[];
     if (enteredString.isEmpty) {
@@ -28,16 +29,19 @@ class ToDoController extends GetxController {
     foundTodo.value = result;
   }
 
-  void addToDo(String title, String desc, DateTime dateTime) {
-    todos.add(ToDo(title: title, desc: desc, creationDate: dateTime));
+  void addToDo(String title, String desc) {
+    todos.add(ToDo(title: title, desc: desc, creationDate: DateTime.now()));
+  }
+  void updateToDo(int index, String title,desc) {
+    todos[index].title = title;
+    todos[index].desc = desc;
+
   }
 
   void deleteToDo(index) {
     todos.removeAt(index);
   }
 
- updateToDo(int index, String title, String desc) {
-    todos[index] = ToDo(title: todos[index].title, desc: todos[index].desc);
 
-  }
+
 }

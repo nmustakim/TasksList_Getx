@@ -96,9 +96,9 @@ class _TodoHomeState extends State<TodoHome> {
                                 controller.todos[index] = todo;
                               },
                             ),
-                              //
-                              // trailing: Text(DateFormat().format(controller
-                              //   .foundTodo.value[index].creationDate!)),
+
+                              trailing: Text(DateFormat().format(controller
+                                .foundTodo.value[index].creationDate!)),
                             onTap: () => Get.to( Details(index)),
                           ),
                         );
