@@ -6,19 +6,25 @@ import 'addToDo.dart';
 import 'package:intl/intl.dart';
 
 class TodoHome extends StatefulWidget {
-  String? name;
 
-  TodoHome({super.key, this.name});
+
+  const TodoHome({super.key});
 
   @override
   State<TodoHome> createState() => _TodoHomeState();
 }
 
+
 class _TodoHomeState extends State<TodoHome> {
   final controller = Get.find<ToDoController>();
 
   final search = TextEditingController();
-
+  late String name;
+@override
+  void initState() {
+name = controller.name.string;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,12 +49,12 @@ class _TodoHomeState extends State<TodoHome> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: Text('Hello,',
+                        child: Text('Hello,$name',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      CircleAvatar(backgroundColor:Colors.cyanAccent,radius:30,child: Text('NM',style: TextStyle(fontSize: 18,color: Colors.black),),)
+                      CircleAvatar(backgroundColor:Colors.cyanAccent,radius:30,child: Text(name.substring(0,1).toUpperCase(),style: TextStyle(fontSize: 18,color: Colors.black),),)
                     ],
                   ),
                   SizedBox(height: 40,),
@@ -99,7 +105,7 @@ class _TodoHomeState extends State<TodoHome> {
 
                               trailing: Text(DateFormat().format(controller
                                 .foundTodo.value[index].creationDate!)),
-                            onTap: () => Get.to( Details(index)),
+                            onTap: () => Get.to(Details(index)),
                           ),
                         );
                       },

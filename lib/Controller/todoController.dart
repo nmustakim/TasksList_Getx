@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:todo_getx/Models/todos.dart';
 
 class ToDoController extends GetxController {
+  var name = ''.obs;
   var todos = <ToDo>[
 
   ].obs;
