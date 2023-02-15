@@ -37,7 +37,6 @@ class EditToDo extends StatelessWidget {
                       ),
                       IconButton(onPressed: (){
                         controller.updateToDo(index,toDoTitle.text, toDoDesc.text);
-                        Get.snackbar('Success','Todo updated successfully');
    Get.to(TodoHome());
 
     }, icon: Icon(Icons.check,size: 60,color: Colors.green,))

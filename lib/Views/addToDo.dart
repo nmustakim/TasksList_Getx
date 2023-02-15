@@ -37,7 +37,6 @@ class _AddToDoState extends State<AddToDo> {
         IconButton(onPressed: () {controller.addToDo(
         toDoTitle.text,
         toDoDesc.text);
-          Get.snackbar('Success','Todo added successfully');
             Get.back();}, icon: const Icon(Icons.check,color: Colors.green,size: 60)),
 
                       ],
